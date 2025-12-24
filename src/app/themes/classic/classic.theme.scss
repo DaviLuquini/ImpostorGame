@@ -1,0 +1,77 @@
+:root {
+    /* Core Colors (Mapped from 'Deception' Dark Design) */
+    --color-primary: #2060df;
+    --color-primary-rgb: 32, 96, 223;
+    --color-primary-light: #4c82ff;
+    --color-primary-dark: #1545aa;
+
+    --color-secondary: #0ea5e9;
+    /* Light Blue accent */
+    --color-secondary-rgb: 14, 165, 233;
+
+    --color-background: #111621;
+    --color-surface: #1a202e;
+    --color-surface-hover: #252b3b;
+
+    --color-text: #ffffff;
+    --color-text-secondary: #9ca3af;
+    /* Gray-400 */
+    --color-text-inverse: #ffffff;
+
+    --color-border: #1f2937;
+    /* Gray-800 */
+
+    /* Semantic Colors */
+    --color-success: #10b981;
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+
+    /* Typography */
+    --font-family: 'Manrope', sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    /* Spacing */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+
+    /* Borders */
+    --border-radius: 0.375rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-2xl: 1rem;
+    --border-radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px rgba(32, 96, 223, 0.5);
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.theme-classic {
+    /* Apply variables to body when this theme is active */
+    --color-primary: #2060df;
+    --color-background: #111621;
+}

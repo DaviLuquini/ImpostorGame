@@ -1,0 +1,56 @@
+.theme-neon-spy {
+    --color-primary: #00F5FF;
+    --color-primary-hover: #00D4E0;
+    --color-secondary: #FF00FF;
+    --color-secondary-hover: #CC00CC;
+    --color-background: #0D0D0D;
+    --color-surface: #1A1A1A;
+    --color-surface-hover: #262626;
+    --color-text: #FFFFFF;
+    --color-text-secondary: #B0B0B0;
+    --color-text-inverse: #0D0D0D;
+    --color-accent: #FFE500;
+    --color-danger: #FF3366;
+    --color-danger-hover: #E6294D;
+    --color-success: #00FF88;
+    --color-warning: #FF9500;
+    --color-border: #333333;
+
+    --font-family: 'Orbitron', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+    --spacing-10: 2.5rem;
+    --spacing-12: 3rem;
+
+    --border-radius-sm: 0.125rem;
+    --border-radius: 0.25rem;
+    --border-radius-lg: 0.375rem;
+    --border-radius-xl: 0.5rem;
+    --border-radius-full: 9999px;
+
+    --shadow-sm: 0 0 5px rgba(0, 245, 255, 0.3);
+    --shadow: 0 0 10px rgba(0, 245, 255, 0.4);
+    --shadow-md: 0 0 15px rgba(0, 245, 255, 0.5);
+    --shadow-lg: 0 0 25px rgba(0, 245, 255, 0.6);
+    --shadow-xl: 0 0 40px rgba(0, 245, 255, 0.7);
+
+    --transition-fast: 150ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 300ms ease;
+}
