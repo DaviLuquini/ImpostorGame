@@ -1,0 +1,29 @@
+/* League of Legends Theme */
+body.theme-league-of-legends {
+    /* Core Colors - Gold and Teal LoL style */
+    --color-primary: #c89b3c;
+    --color-primary-rgb: 200, 155, 60;
+    --color-primary-light: #e0b85c;
+    --color-primary-dark: #9a7320;
+
+    --color-secondary: #0ac8b9;
+    --color-secondary-rgb: 10, 200, 185;
+
+    --color-background: #010a13;
+    --color-surface: #0a1428;
+    --color-surface-hover: #1a2840;
+
+    --color-text: #f0e6d2;
+    --color-text-secondary: #a09b8c;
+
+    --color-border: #1e3a4d;
+
+    /* Semantic Colors */
+    --color-success: #0ac8b9;
+    --color-danger: #ff4655;
+    --color-warning: #c89b3c;
+    --color-info: #5b9ade;
+
+    /* Shadow Glow */
+    --shadow-glow: 0 0 20px rgba(200, 155, 60, 0.5);
+}

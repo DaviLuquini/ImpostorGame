@@ -77,5 +77,9 @@ export const GameSelectors = {
         GameState.players().filter(p => p.status === PlayerStatus.Alive && (p.role?.isCrewmate() ?? false))
     ),
 
-    winner: computed(() => GameState.session()?.winner ?? null)
+    winner: computed(() => GameState.session()?.winner ?? null),
+
+    // Secret words for the current game
+    secretWord: computed(() => GameState.secretWord()),
+    impostorWord: computed(() => GameState.impostorWord())
 };

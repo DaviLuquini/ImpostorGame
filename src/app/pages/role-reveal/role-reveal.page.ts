@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameActions } from '@state/game/game.actions';
 import { GameSelectors } from '@state/game/game.selectors';
+import { CategoryService } from '@state/category/category.service';
 
 @Component({
   selector: 'app-role-reveal',
@@ -80,14 +81,14 @@ import { GameSelectors } from '@state/game/game.selectors';
                 <div class="state-revealed" [class.visible]="isRevealed()">
                    <p class="role-preheader">You are the</p>
                    <h2 class="role-name" [class.imposter]="isImposter()">
-                     {{ currentPlayer().role?.name }}
+                     {{ getRoleName() }}
                    </h2>
                    
                    <div class="role-separator" [class.imposter]="isImposter()"></div>
                    
-                   <p class="role-label">Team</p>
-                   <p class="role-team" [class.imposter]="isImposter()">
-                     {{ currentPlayer().role?.team }}
+                   <p class="role-label">Your Word</p>
+                   <p class="secret-word" [class.imposter]="isImposter()">
+                     {{ getSecretWord() }}
                    </p>
                 </div>
 
@@ -105,9 +106,6 @@ import { GameSelectors } from '@state/game/game.selectors';
             <span>I have memorized my role</span>
             <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
           </button>
-          <p class="footer-note">
-            Tapping this will clear the screen for the next player.
-          </p>
         </footer>
       </div>
     </div>
@@ -159,6 +157,48 @@ import { GameSelectors } from '@state/game/game.selectors';
       height: 100vh; /* Fill screen height */
       margin: 0 auto;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+      transition: max-width 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-container {
+        max-width: 380px; /* Further reduced */
+        height: auto;
+        min-height: auto;
+        margin: auto; /* Center fully */
+        border-radius: 20px;
+        background-color: rgba(17, 22, 33, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transform: scale(0.95); /* Slight overall scale down */
+      }
+      
+      .role-reveal-page {
+        overflow-y: hidden; /* Prevent scroll */
+        justify-content: center;
+        padding: 0;
+      }
+
+      .card-container {
+        max-height: 400px; /* Reduced to fit */
+      }
+      
+      .header {
+        padding-top: 1.5rem;
+        padding-bottom: 0.5rem;
+      }
+      
+      .footer {
+        padding: 1rem 1.5rem 1.5rem;
+      }
+
+      .player-turn-title {
+        font-size: 1.75rem;
+      }
+      
+      .context-section {
+        margin-bottom: 1rem;
+      }
     }
 
     /* --- Header --- */
@@ -426,6 +466,16 @@ import { GameSelectors } from '@state/game/game.selectors';
     }
     .role-team.imposter { color: #ef4444; }
 
+    .secret-word {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--color-primary, #2060df);
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .secret-word.imposter { color: #ef4444; }
+
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(5px); }
         to { opacity: 1; transform: translateY(0); }
@@ -505,6 +555,7 @@ import { GameSelectors } from '@state/game/game.selectors';
 })
 export class RoleRevealPage {
   private router = inject(Router);
+  private categoryService = inject(CategoryService);
 
   // State
   isRevealed = signal(false);
@@ -514,10 +565,41 @@ export class RoleRevealPage {
   currentPlayer = GameSelectors.currentPlayer;
   currentPlayerIndex = GameSelectors.currentPlayerIndex;
   totalPlayers = GameSelectors.playerCount;
-  allPlayers = GameSelectors.allPlayers; // Ensure you use allPlayers from selectors
+  allPlayers = GameSelectors.allPlayers;
 
   // Computed
   isImposter = computed(() => this.currentPlayer().role?.isImposter());
+
+  /**
+   * Get the role name using category terminology
+   */
+  getRoleName(): string {
+    const isImp = this.isImposter();
+    return isImp
+      ? this.categoryService.impostorName()
+      : this.categoryService.crewmateName();
+  }
+
+  /**
+   * Get the team name using category terminology
+   */
+  getTeamName(): string {
+    const isImp = this.isImposter();
+    return isImp
+      ? this.categoryService.impostorTeamName()
+      : this.categoryService.crewmateTeamName();
+  }
+
+  /**
+   * Get the secret word based on player role
+   * Crewmates see the real word, impostor sees a different (fake) word
+   */
+  getSecretWord(): string {
+    const isImp = this.isImposter();
+    return isImp
+      ? GameSelectors.impostorWord()
+      : GameSelectors.secretWord();
+  }
 
   startReveal(): void {
     this.isRevealed.set(true);
@@ -536,8 +618,9 @@ export class RoleRevealPage {
     this.hasViewedRole.set(false);
 
     if (!hasMore) {
-      GameActions.setPhase('discussion' as any);
-      this.router.navigate(['/discussion']);
+      // All players have seen their roles - game is ready for real-life play
+      GameActions.resetGame();
+      this.router.navigate(['/']);
     }
   }
 }

@@ -1,0 +1,29 @@
+/* Clash Royale Theme */
+body.theme-clash-royale {
+    /* Core Colors - Orange/Gold Clash Royale style */
+    --color-primary: #f5a623;
+    --color-primary-rgb: 245, 166, 35;
+    --color-primary-light: #ffc04d;
+    --color-primary-dark: #c77f00;
+
+    --color-secondary: #4a90d9;
+    --color-secondary-rgb: 74, 144, 217;
+
+    --color-background: #1a1a2e;
+    --color-surface: #16213e;
+    --color-surface-hover: #1f2f5a;
+
+    --color-text: #ffffff;
+    --color-text-secondary: #a0a8c0;
+
+    --color-border: #2a3050;
+
+    /* Semantic Colors */
+    --color-success: #4caf50;
+    --color-danger: #e74c3c;
+    --color-warning: #f5a623;
+    --color-info: #4a90d9;
+
+    /* Shadow Glow */
+    --shadow-glow: 0 0 20px rgba(245, 166, 35, 0.5);
+}

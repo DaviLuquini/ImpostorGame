@@ -12,5 +12,8 @@ export const GameState = {
     votes: signal<Vote[]>([]),
     roundNumber: signal<number>(1),
     timerSeconds: signal<number>(0),
-    isTimerRunning: signal<boolean>(false)
+    isTimerRunning: signal<boolean>(false),
+    // Secret words for the current game
+    secretWord: signal<string>(''),      // The word crewmates know
+    impostorWord: signal<string>('')      // The fake word impostor sees
 };

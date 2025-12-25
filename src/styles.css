@@ -7,6 +7,11 @@
 @import './app/themes/vintage-detective/vintage-detective.theme.scss';
 @import './app/themes/minimal-modern/minimal-modern.theme.scss';
 
+/* Category Themes */
+@import './app/categories/clash-royale/clash-royale.theme.scss';
+@import './app/categories/league-of-legends/league-of-legends.theme.scss';
+@import './app/categories/developers/developers.theme.scss';
+
 *,
 *::before,
 *::after {

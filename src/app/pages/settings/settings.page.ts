@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { GameActions } from '@state/game/game.actions';
 import { GameSelectors } from '@state/game/game.selectors';
 import { LocalStorageService } from '@core/services/storage/local-storage.service';
+import { CategoryService } from '@state/category/category.service';
 
 const ROSTER_STORAGE_KEY = 'saved_roster';
 const CONFIG_STORAGE_KEY = 'saved_config';
@@ -631,6 +632,7 @@ interface SavedConfig {
 export class SettingsPage implements OnInit {
   private router = inject(Router);
   localStorage = inject(LocalStorageService);
+  categoryService = inject(CategoryService);
 
   // State
   playerCount = signal(8);
@@ -745,6 +747,14 @@ export class SettingsPage implements OnInit {
       GameActions.addPlayer(p.name);
     });
 
-    this.router.navigate(['/lobby']);
+    // Get two distinct words from the active category
+    const words = this.categoryService.getTwoDistinctWords();
+
+    // Start the game (assigns roles and secret words)
+    GameActions.startGame(words);
+
+    // Navigate directly to role reveal
+    this.router.navigate(['/role-reveal']);
   }
 }
+

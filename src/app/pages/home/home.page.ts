@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ThemeService } from '@state/theme/theme.service';
+import { CategoryService } from '@state/category/category.service';
 import { CommonModule } from '@angular/common';
 import { LocalStorageService } from '@core/services/storage/local-storage.service';
 import { GameActions } from '@state/game/game.actions';
@@ -60,11 +60,11 @@ interface SavedConfig {
             </div>
           </button>
 
-          <!-- Themes Button -->
-          <button class="btn-secondary" (click)="goToThemes()">
+          <!-- Categories Button -->
+          <button class="btn-secondary" (click)="goToCategories()">
             <div class="btn-content">
-              <span class="material-symbols-outlined icon-sm">palette</span>
-              <span class="btn-text">Themes</span>
+              <span class="material-symbols-outlined icon-sm">category</span>
+              <span class="btn-text">Categories</span>
             </div>
           </button>
 
@@ -376,7 +376,7 @@ interface SavedConfig {
 export class HomePage {
   private router = inject(Router);
   private localStorage = inject(LocalStorageService);
-  themeService = inject(ThemeService);
+  categoryService = inject(CategoryService);
 
   startNewGame(): void {
     // Load saved roster and config from LocalStorage
@@ -403,12 +403,18 @@ export class HomePage {
       GameActions.addPlayer(p.name);
     });
 
-    // Navigate to lobby to start the game
-    this.router.navigate(['/lobby']);
+    // Get two distinct words from the active category
+    const words = this.categoryService.getTwoDistinctWords();
+
+    // Start the game (assigns roles and secret words)
+    GameActions.startGame(words);
+
+    // Navigate directly to role reveal
+    this.router.navigate(['/role-reveal']);
   }
 
-  goToThemes(): void {
-    this.router.navigate(['/themes']);
+  goToCategories(): void {
+    this.router.navigate(['/categories']);
   }
 
   goToSettings(): void {

@@ -1,0 +1,29 @@
+/* Developers Theme */
+body.theme-developers {
+    /* Core Colors - VS Code dark style */
+    --color-primary: #61dafb;
+    --color-primary-rgb: 97, 218, 251;
+    --color-primary-light: #8be8ff;
+    --color-primary-dark: #3fb8d9;
+
+    --color-secondary: #4caf50;
+    --color-secondary-rgb: 76, 175, 80;
+
+    --color-background: #1e1e1e;
+    --color-surface: #252526;
+    --color-surface-hover: #2d2d30;
+
+    --color-text: #d4d4d4;
+    --color-text-secondary: #808080;
+
+    --color-border: #3c3c3c;
+
+    /* Semantic Colors */
+    --color-success: #4caf50;
+    --color-danger: #f44336;
+    --color-warning: #ff9800;
+    --color-info: #2196f3;
+
+    /* Shadow Glow */
+    --shadow-glow: 0 0 20px rgba(97, 218, 251, 0.5);
+}

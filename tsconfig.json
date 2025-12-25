@@ -22,6 +22,9 @@
       ],
       "@themes/*": [
         "src/app/themes/*"
+      ],
+      "@categories/*": [
+        "src/app/categories/*"
       ]
     },
     "strict": true,

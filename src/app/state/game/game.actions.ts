@@ -41,13 +41,20 @@ export const GameActions = {
         }
     },
 
-    startGame(): void {
+    startGame(words?: { crewmateWord: string; impostorWord: string }): void {
         const session = GameState.session();
         const players = GameState.players();
 
         if (session && players.length >= 3) {
             AssignRolesUseCase.execute(players, session.config);
             GameState.players.set([...players]);
+
+            // Set secret words if provided
+            if (words) {
+                GameState.secretWord.set(words.crewmateWord);
+                GameState.impostorWord.set(words.impostorWord);
+            }
+
             GameActions.setPhase(GamePhase.RoleReveal);
             GameState.currentPlayerIndex.set(0);
         }
@@ -131,5 +138,7 @@ export const GameActions = {
         GameState.currentPlayerIndex.set(0);
         GameState.timerSeconds.set(0);
         GameState.isTimerRunning.set(false);
+        GameState.secretWord.set('');
+        GameState.impostorWord.set('');
     }
 };
