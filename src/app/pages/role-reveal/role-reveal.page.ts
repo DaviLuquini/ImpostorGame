@@ -71,24 +71,23 @@ import { CategoryService } from '@state/category/category.service';
                   <div class="fingerprint-circle">
                     <span class="material-symbols-outlined fingerprint-icon">fingerprint</span>
                   </div>
-                  <h3 class="card-title">Tap to Reveal Identity</h3>
+                  <h3 class="card-title">Tap to Reveal</h3>
                   <p class="card-desc">
-                    Hold your finger on the screen to see your secret role.
+                    Hold your finger on the screen to see your secret word.
                   </p>
                 </div>
 
-                <!-- REVEALED STATE: Role Info -->
+                <!-- REVEALED STATE: Only the Secret Word -->
                 <div class="state-revealed" [class.visible]="isRevealed()">
-                   <p class="role-preheader">You are the</p>
-                   <h2 class="role-name" [class.imposter]="isImposter()">
-                     {{ getRoleName() }}
+                   <p class="role-preheader">Your Secret Word</p>
+                   <h2 class="secret-word">
+                     {{ getSecretWord() }}
                    </h2>
                    
-                   <div class="role-separator" [class.imposter]="isImposter()"></div>
+                   <div class="role-separator"></div>
                    
-                   <p class="role-label">Your Word</p>
-                   <p class="secret-word" [class.imposter]="isImposter()">
-                     {{ getSecretWord() }}
+                   <p class="word-hint">
+                     Memorize this word. Don't reveal it to others.
                    </p>
                 </div>
 
@@ -467,14 +466,23 @@ import { CategoryService } from '@state/category/category.service';
     .role-team.imposter { color: #ef4444; }
 
     .secret-word {
-        font-size: 1.5rem;
-        font-weight: 800;
+        font-size: 2rem;
+        font-weight: 900;
         color: var(--color-primary, #2060df);
-        margin: 0;
+        margin: 0 0 1.5rem 0;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        text-align: center;
+        line-height: 1.2;
     }
-    .secret-word.imposter { color: #ef4444; }
+
+    .word-hint {
+        font-size: 0.875rem;
+        color: #94a3b8;
+        text-align: center;
+        margin: 0;
+        max-width: 200px;
+    }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(5px); }
